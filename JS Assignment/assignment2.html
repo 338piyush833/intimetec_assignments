@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Assignment 2</title>
+    <style>
+        table {
+            background-color: #d3d3d3;
+            
+        }
+
+        td {
+            text-align: right;
+            border: 1px solid black;
+        }
+
+        td[rowspan] {
+            background-color: #90ee90;
+        }
+    </style>
+</head>
+<body>
+    <center><h1>Assignment 2</h1></center>
+    <h4>COVID-19 report as per WHO</h4>
+    <div id="original"></div>
+    <h4>1.Total Cases</h4>
+    <div id="total"></div>
+    <h4>2.Countries where there are no new COVID-19 cases</h4>
+    <div id="no_new"></div>
+    <h4>3.Add a column with the percentage of deaths/ total cases for each country.</h4>
+    <div id="death_ratio"></div>
+    <h4>4.Assume that the number of COVID-19 cases in Spain increases to 3,00,000. Insert the following record for Spain in the above table just below India.</h4>
+    <div id="spain"></div>
+    <script>
+        function createTable(tableData,id) {
+            var table = document.createElement('table');
+            var tableBody = document.createElement('tbody');
+
+            tableData.forEach(function (rowData) {
+                var row = document.createElement('tr');
+
+                rowData.forEach(function (cellData) {
+                    var cell = document.createElement('td');
+                    cell.appendChild(document.createTextNode(cellData));
+                    row.appendChild(cell);
+                });
+
+                tableBody.appendChild(row);
+            });
+
+            table.appendChild(tableBody);
+            document.getElementById(id).appendChild(table);
+        }
+        var case_data = [
+            { "country": "USA", "cases": 2142515, "new_cases": 291, "deaths": 117533 },
+            { "country": "Brazil", "cases": 850796, "new_cases": 0, "deaths": 42791 },
+            { "country": "Russia", "cases": 528964, "new_cases": 8835, "deaths": 6948 },
+            { "country": "India", "cases": 322777, "new_cases": 1151, "deaths": 9206 },
+            { "country": "UK", "cases": 294375, "new_cases": 0, "deaths": 41662 }
+        ];
+        
+        createTable(case_data.map(function (case_data) {
+            return Object.values(case_data)
+        }),"original");
+        (function () {
+            var cases = case_data.map(function (case_data) {
+                return case_data.cases
+            });
+            var total_cases = cases.reduce(function (total, data) {
+                return total + data;
+            }, 0);
+            var p = document.createElement('p');
+            p.appendChild(document.createTextNode(total_cases));
+            document.getElementById("total").appendChild(p);
+        })();
+        var no_new_cases = case_data.filter((case_obj) => case_obj.new_cases == 0);
+        p = document.createElement('p');
+        p.appendChild(document.createTextNode(no_new_cases.map((cases_data) => cases_data.country)));
+        document.getElementById("no_new").appendChild(p);
+
+        function death_ratio(death, total) {
+            return death / total;
+        };
+
+        result = [];
+        case_data.forEach(function (element) {
+            element.death_ratio = death_ratio(element.deaths, element.cases);
+            result.push(element);
+        });
+        createTable(result.map(function (case_data) {
+            return Object.values(case_data)
+        }), "death_ratio");
+        spain_obj = { "country": "Spain", "cases": 300000, "new_cases": 0, "deaths": 27136 ,"death_ratio":27136/300000}
+        case_data.splice(4, 0, spain_obj)
+        createTable(case_data.map(function (case_data) {
+            return Object.values(case_data)
+        }), "spain");
+    </script>
+</body>
+</html>

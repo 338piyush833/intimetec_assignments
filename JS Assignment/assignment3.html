@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Assignment 3</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+        .show{
+            display:block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hotal Management System</h1>
+    <form name="customer" id="customer_form" action="invoice.html" target="_blank">
+        <label for="name">Customer Name:</label>
+        <input type="text" name="name" required  /><br><br>
+        <label for="checkin">Check-in Date:</label>
+        <input type="date" name="checkin" required /><br><br>
+        <label for="checkout">Check-out Date:</label>
+        <input type="date" name="checkout"  required/><br><br>
+        <label for="room">Room Type:</label>
+        <select name="room" required>
+            <option value="normal">Normal</option>
+            <option value="delux">Delux</option>
+        </select><br><br>
+        <button type="button" onclick="generate()">Generate Invoice</button>
+        <button type="reset">Reset</button>
+        <div id="error" class="hidden">
+            <h4>Error</h4>
+            <span id="error_span"></span>
+        </div>
+        <div id="invoice" class="hidden">
+            <div id="invoice1">
+                <h3>Invoice</h3>
+                <span>Customer Name: </span><span id="customer_name"></span><br><br>
+                <span>Check-in Date: </span><span id="indate"></span><br><br>
+                <span>Check-out Date: </span><span id="outdate"></span><br><br>
+                <span>Room Type: </span><span id="type"></span><br><br>
+                <span>Rate/day: </span><span id="rate"></span><br><br>
+                <span>No. of days: </span><span id="days"></span><br><br>
+                <span>GST@12%: </span><span id="gst"></span><br><br>
+                <span>Total Payable: </span><span id="total"></span><br><br>
+                <div id="buttons"></div>
+            </div>
+            <button type="button" onclick="new_window()">Print Invoice</button>
+        </div>
+        
+    </form>
+    <script>
+        function form_validation() {
+            var flag = true;
+            var name = document.getElementsByName("name")[0].value;
+            check_in_date = new Date(document.forms["customer"]["checkin"].value);
+            check_out_date = new Date(document.forms["customer"]["checkout"].value);
+            var days = parseInt((check_out_date - check_in_date) / (1000 * 60 * 60 * 24), 10);
+            if (name == null || name == "" || name.length < 3) {
+                document.getElementById("error").className = "show";
+                document.getElementById("invoice").className = "hidden";
+                console.log(name);
+                document.getElementById("error_span").innerHTML = "Enter Valid Name"
+                return false;
+            }
+            if (days < 0 || isNaN(days)) {
+                document.getElementById("error").className = "show";
+                document.getElementById("invoice").className = "hidden";
+                document.getElementById("error_span").innerHTML = "Enter Valid Check-in and Check-out date"
+                return false;
+            }
+            return true;
+        }
+        function generate() {
+            var form = document.getElementById("customer_form");
+            if (form_validation()) {
+                document.getElementById("error").className = "hidden"
+            
+                document.getElementById("invoice").className = "show";
+                document.getElementById("customer_name").innerHTML = document.forms["customer"]["name"].value;
+                var check_in_date, check_out_date;
+                check_in_date = new Date(document.forms["customer"]["checkin"].value);
+                check_out_date = new Date(document.forms["customer"]["checkout"].value);
+                document.getElementById("indate").innerHTML = check_in_date;
+                document.getElementById("outdate").innerHTML = check_out_date;
+                var room_type = document.forms["customer"]["room"].value;
+                var rate;
+                document.getElementById("type").innerHTML = room_type;
+                if (room_type == "normal") {
+                    rate = 2000;
+                } else {
+                    rate = 4000;
+                }
+                document.getElementById("rate").innerHTML = rate;
+                var days = parseInt((check_out_date - check_in_date) / (1000 * 60 * 60 * 24), 10);
+                if (days == 0) {
+                    days = 1;
+                }
+                document.getElementById("days").innerHTML = days;
+                var gst = (parseFloat(rate) * parseInt(days)) * 0.12;
+                document.getElementById("gst").innerHTML = (gst).toFixed(2);
+                document.getElementById("total").innerHTML = (parseFloat(gst) * 1.12 / 0.12).toFixed(2);
+            }
+        }
+        function new_window() {
+            var newWin = open('', 'Invoice', 'height=1500,width=500');
+            var html = document.getElementById("invoice1").outerHTML;
+            newWin.document.write(html);
+            newWin.document.getElementById("buttons").innerHTML = "<button type='button' onclick='window.print()'>Print</button><button type='button' onclick='window.close()'>Back</button>"
+        }
+    </script>
+</body>
+</html>

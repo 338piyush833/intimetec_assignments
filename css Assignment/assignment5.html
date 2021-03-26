@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>assignment 5</title>
+    <style>
+    div[title="container-title"]{ 
+        text-shadow: 0px 0px 5px blue,0px 0px 10px red; 
+        text-align:center;
+        font-size:38px;
+        text-transform:capitalize;
+        box-shadow:10px 10px grey;
+        background-color:yellowgreen;
+        height:48px;
+    }
+        .one {
+            width: 200px;
+            height: 400px;
+            background-color: red;
+            float: left;
+            transition: -webkit-transform 0.6s ,background-color 0.6s;
+            -webkit-transform-style: preserve-3d;
+            -webkit-perspective: 1000px;
+        }
+        .two {
+            width: 50px;
+            height: 75px;
+            background: url('https://s.cdpn.io/79/sprite-steps.png') left center;
+            float: right;
+            animation: play 3s steps(38) infinite;
+        }
+        @keyframes play {
+            100% {
+                background-position: -1900px;
+            }
+        }
+        .one:hover{
+            -webkit-transform:rotateY(180deg);
+            background-color:yellowgreen;
+        }
+
+    </style>
+</head>
+<body>
+    <div title="container-title">
+        <p>edureka css certification training</p>
+    </div>
+    <br><br>
+    <div class="one">
+
+    </div>
+    <div class="two">
+
+    </div>
+</body>
+</html>

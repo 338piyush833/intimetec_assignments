@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h3>Content Compiler</h3>
+    <button type="button" onclick="caller()">Load asynchronously</button>
+    <button type="button">Load synchronously</button>
+    <div id="demo"></div>
+    <script>
+        var httpReq;
+        if (window.XMLHttpRequest) {
+            httpReq = new XMLHttpRequest();
+        } else {
+            httpReq = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        
+        function myFunction(url_string) {
+            //console.log(url_string);
+            return new Promise(function (myResolve, myReject) {
+                httpReq.open("GET", url_string, true);
+                
+                //console.log("in promise");
+                httpReq.onload = function () {
+                    myResolve(JSON.parse(this.responseText));
+                    //console.log(this.responseText);
+                };
+                httpReq.send();
+                //myResolve(httpReq.responseText);
+            }).then(function (result) {
+                //console.log("in then");
+                return result;
+            });
+            //httpReq.open("GET", "https://jsonplaceholder.typicode.com/posts/1", true);
+            //console.log("df");
+            //httpReq.send();
+            //console.log("df1");
+        }
+        async function getAllUrls(urls) {
+            
+            //var data = await Promise.all(urls.map(myFunction));
+            var data = await myFunction(urls);
+            return data;
+        }
+        async function caller() {
+            var urls = ['https://jsonplaceholder.typicode.com/posts/1',
+                'https://jsonplaceholder.typicode.com/posts/2',
+                'https://jsonplaceholder.typicode.com/posts/3',
+                'https://jsonplaceholder.typicode.com/posts/4',
+                'https://jsonplaceholder.typicode.com/posts/5',
+                'https://jsonplaceholder.typicode.com/posts/6',
+                'https://jsonplaceholder.typicode.com/posts/7',
+                'https://jsonplaceholder.typicode.com/posts/8',
+                'https://jsonplaceholder.typicode.com/posts/9'
+            ];
+            console.log("Before: getallurls");
+            //var responses = await getAllUrls(urls)
+            var responses = await urls.map(getAllUrls);
+
+            //var responses = [];
+            //for (i = 0; i < urls.length; i++) {
+            //    responses[i] = await getAllUrls(urls[i]);
+            //}
+            
+            //responses[1] = await getAllUrls(urls[1]);
+
+            //var x = await myFunction();
+
+            //const responses = await Promise.all(urls.map(getAllUrls));
+            //console.log("in caller");
+            setTimeout(function () { console.log(responses); }, 2000);
+
+            document.getElementById("demo").innerHTML = responses;
+        }
+    </script>
+</body>
+</html>

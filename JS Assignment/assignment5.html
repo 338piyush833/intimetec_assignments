@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <title>Assignment 5</title>
+</head>
+<body>
+    <textarea id="text_area" name="w3review" rows="4" cols="150"></textarea><br>
+    <button type="button" value="Mask" onclick="mask()">Mask</button>
+    <script>
+        function mask() {
+            var content = document.getElementById("text_area").value;
+            document.getElementById("text_area").value = "";
+            var masked_pan = content.replace(/([A-Z]{5}[0-9]{4}[A-Z])/gm, "[masked]");
+            var masked_aadhar = masked_pan.replace(/[\d]{4}\-[\d]{4}\-[\d]{4}\-[\d]{4}/gim, "[masked]");
+            var masked_salary = masked_aadhar.replaceAll(/rs\. ?([0-9]+)/gim, "[masked]");
+            document.getElementById("text_area").value = masked_salary;
+        }
+        
+    </script>
+</body>
+</html>

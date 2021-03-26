@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" ">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        table {
+            background-color: #d3d3d3;
+        }
+
+        td {
+            text-align: right;
+        }
+
+        th {
+            background-color: #add8e6;
+        }
+
+        td[rowspan] {
+            background-color: #90ee90;
+        }
+    </style>
+</head>
+<body>
+    <form oninput="out_name.value = name.value, marks_obtained.value = parseInt(en.value)+parseInt(hi.value)+parseInt(ma.value)+parseInt(sc.value)+parseInt(ss.value)">
+        <fieldset>
+            <legend>Student Details:</legend>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+            <label for="gender">Gender:</label>
+            <select name="gender" id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <br><br>
+            <label for="dob">Date Of Birth:</label>
+            <input type="date" name="dob" />
+        </fieldset>
+        <table border="1">
+            <caption>Marksheet</caption>
+            <tr>
+                <th>Name</th>
+                <th>Subject Name</th>
+                <th>Total Max Marks</th>
+                <th>Marks Obtained</th>
+            </tr>
+            <tr>
+                <td rowspan="5"><output name="out_name" for="name"></td>
+                <td>English</td>
+                <td><input type="text" disabled value="100" /></td>
+                <td><input type="number" name="en" value="0"/></td>
+            </tr>
+            <tr>
+                <td>Hindi</td>
+                <td><input type="text" disabled value="100" /></td>
+                <td><input type="number" name="hi" value="0"/></td>
+            </tr>
+            <tr>
+                <td>Mathematics</td>
+                <td><input type="text" disabled value="100" /></td>
+                <td><input type="number" name="ma" value="0"/></td>
+            </tr>
+            <tr>
+                <td>Science</td>
+                <td><input type="text" disabled value="100" /></td>
+                <td><input type="number" name="sc" value="0"/></td>
+            </tr>
+            <tr>
+                <td>Social Science</td>
+                <td><input type="text" disabled value="100" /></td>
+                <td><input type="number"  name="ss" value="0"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right"><b>Total</b></td>
+                <td><b><input type="text" disabled value="500" /></b></td>
+                <td><b><output name="marks_obtained" for="en hi ma sc ss"></output></b></td>
+            </tr>
+        </table>
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" ">
+<head>
+    <meta charset="utf-8" />
+    <title>ABC Corporation</title>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend>Personal Details:</legend>
+            <label for="lname">Last Name:</label>
+            <input type="text" id="name" name="lname" placeholder="Enter your last name..."><br><br>
+            <label for="mname">Middle Name:</label>
+            <input type="text" id="name" name="mname" placeholder="Enter your middle name..."><br><br>
+            <label for="fname">First Name:</label>
+            <input type="text" id="name" name="fname" placeholder="Enter your first name..."><br><br>
+
+            <label for="email">Email ID:</label>
+            <input type="text" id="email" name="email" placeholder="abcd@exampl.com"><br><br>
+            <label for="phone">Contact #:</label>
+            <input type="text" id="phone" name="phone" placeholder="1234567890"><br>
+            <label>Note: Please enter a valid 10-digit mobile number.</label><br><br>
+            <label for="gender">Select your Gender:</label>
+            <input type="radio" name="gender" id="m" value="male" />
+            <label for="m">Male</label>
+            <input type="radio" name="gender" id="f" value="female" />
+            <label for="f">Female</label>
+            <input type="radio" name="gender" id="other" value="other" />
+            <label for="other">Other</label>
+            <br><br>
+            <label for="dob">Date Of Birth:</label>
+            <input type="date" name="dob" /><br><br>
+        </fieldset>
+        <br />
+        <fieldset>
+            <legend>Present Address:</legend>
+            <label for="street1">Street:</label>
+            <input type="text" id="street1" name="street1" placeholder="Enter street/building name"><br><br>
+            <label for="city1">City:</label>
+            <input type="text" id="city1" name="city1" placeholder="Enter city here..."><br><br>
+            <label for="state1">State:</label>
+            <input type="text" id="state1" name="state1" placeholder="Enter state here..."><br><br>
+            <label for="zip1">Zip code:</label>
+            <input type="text" id="zip1" name="zip1" placeholder="Enter zip/pin code here..."><br><br>
+        </fieldset>
+        <br />
+        <fieldset>
+            <legend>Permanent Address:</legend>
+            <label for="street2">Street:</label>
+            <input type="text" id="street2" name="street2" placeholder="Enter street/building name"><br><br>
+            <label for="city2">City:</label>
+            <input type="text" id="city2" name="city2" placeholder="Enter city here..."><br><br>
+            <label for="state2">State:</label>
+            <input type="text" id="state2" name="state2" placeholder="Enter state here..."><br><br>
+            <label for="zip2">Zip code:</label>
+            <input type="text" id="zip2" name="zip2" placeholder="Enter zip/pin code here..."><br><br>
+        </fieldset>
+        <br />
+        <fieldset>
+            <legend>Education Qualification:</legend>
+            <label for="qualification">Qualification:</label>
+            <input type="text" id="qualification" name="qualification" placeholder="Enter qualification name here..."><br><br>
+            <label for="passing">Choose the month and year of passing:</label>
+            <input type="month" name="passing" /><br><br>
+        </fieldset>
+        <br />
+        <fieldset>
+            <legend>Professional Qualification:</legend>
+            <label for="org">Organisation Name:</label>
+            <input type="text" id="org" name="org" placeholder="Enter organisation name here..."><br><br>
+            <label for="exp">Experience in:</label>
+            <input type="number" name="year" placeholder="years" min="0"/>
+            <input type="number" name="month" placeholder="month" max="12" min="0"/><br><br>
+        </fieldset>
+        <br />
+        <button type="reset" name="reset">Reset</button>
+        <button type="submit" name="submit">Submit</button>
+    </form>
+    
+</body>
+</html>
