@@ -1,0 +1,80 @@
+.shadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    border: none;
+}
+@keyframes road1{
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+}
+@keyframes road2{
+    0%{transform: rotate(0deg);left: 900px;}
+    20%{transform: rotate(90deg);left: 900px;}
+    40%{left: 400px;transform: rotate(90deg)}
+    60%{left: 400px;transform: rotate(270deg)}
+    80%{left: 900px;transform: rotate(270deg)}
+    100%{left: 900px;transform: rotate(360deg);}
+}
+@keyframes road3{
+    0%{transform: rotate(0deg);left: 1000px;}
+    20%{transform: rotate(90deg);left: 1000px;}
+    40%{left: 100px;transform: rotate(90deg)}
+    60%{left: 100px;transform: rotate(270deg)}
+    80%{left: 1000px;transform: rotate(270deg)}
+    100%{left: 1000px;transform: rotate(360deg);}
+}
+.police{
+    position: absolute;
+    
+    width:  250px;
+    height: 250px;
+    
+    animation-timing-function: ease-in-out;
+    z-index: 1;
+    
+}
+#p1{
+    top: 100px;
+    left: 100px;
+    opacity: 0.5;
+    animation: road1 10s linear 2s infinite reverse;
+}
+#p2{
+    top: 100px;
+    left: 900px;
+    opacity: 0.2;
+    animation: road2 10s linear 4s infinite reverse;
+}
+#p3{
+    top: 400px;
+    left: 1000px;
+    opacity: 0.7;
+    animation: road3 20s linear 6s infinite reverse;
+}
+/*/////////////////// rules */
+@mixin centered {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+@keyframes text{
+    0%{background-color: #FF7F2E;}
+    20%{background-color: #a4ff2e;}
+    40%{background-color: rgb(225, 65, 86);}
+    60%{background-color: #007bff;}
+    80%{background-color: #fffc2e;}
+    100%{background-color: #FF7F2E;}
+}
+.text {
+    background-color: #FF7F2E; 
+    font-family: 'Concert One', 
+    cursive; margin: 0; 
+    overflow: hidden; 
+    padding: 0;
+    @include centered;
+    color:rgba(0, 0, 0, 0.1);
+    font-size: 30em;
+    text-align: center;
+    top: 40%;
+    animation: text 20s linear infinite ;
+  }

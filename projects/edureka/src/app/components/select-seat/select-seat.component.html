@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="card mx-auto shadow my-4 p-3 w-75">
+        <div class="row">
+            <div class="col-md-6 col-sm-12 p-2">
+                <h5>Select Seats</h5>
+                <div class="seat-table" style="overflow-x:auto;">
+                    <table >
+                        <tr *ngFor="let row of seats">
+                            <td *ngFor="let seat of row; let i =index;">
+                                <div class="form-check my-1" [ngClass]="{'mr-4': i==1, 'ml-4': i==2,'mr-1': i==0, 'ml-1': i==3}">
+                                    <input class="form-check-input" type="checkbox" [value]="seat.key" [id]="seat.key" [checked]="seat.value" (change)="checkboxchange($event,seat)">
+                                    <label [for]="seat.key"><img [src]="'../../../assets/'+seat.value+'.png'" /></label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><img src="../../../assets/Steering.jpg" width="20px" class="m-2"/></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="alert alert-danger my-3" role="alert" *ngIf="error">
+                    {{error}}
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 p-2">
+                <div class="row">
+                    <div class="col">
+                        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <table class="table">
+                            <thead>
+                                <th>Seat</th>
+                                <th>Fare</th>
+                                <th>Class</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let seat of selectedSeat">
+                                    <td>{{seat.key}}</td>
+                                    <td>{{price}}</td>
+                                    <td>economy</td>
+                                </tr>
+                            </tbody>
+                        </table></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mt-5">
+                        <input type="text" class="form-control" [value]="'Total:'+total" disabled>
+                        <div class="px-auto">
+                            <button type="button" class="btn btn-primary my-2 w-100" (click)="goToUser()">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

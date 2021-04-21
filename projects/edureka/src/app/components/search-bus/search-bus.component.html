@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-md-8 col-sm-6 overlay-1 d-none d-sm-block">
+            
+        </div>
+        <div class="col col-xs-12 col-md-4 col-sm-6 overlay-2 rounded-left p-4">
+            <form class="form mx-4 my-5" [formGroup]="searchForm" (ngSubmit)="searchBus()">
+                <div class="form-group row">
+                    <label for="select1">From</label>
+                    <select class="form-control" id="select1" formControlName="from" name="from" (change)="changeTo($event)">
+                        <option value="" >Select City</option>
+                        <option *ngFor="let city of citiesFrom" [ngValue]="city">{{city | titlecase}}</option>
+                    </select>
+                    <div class="text-danger" *ngIf="submitted && f.from.errors  && f.from.errors.required">*field is required</div>
+                </div>
+                <div class="form-group row">
+                    <label for="select2">To</label>
+                    <select class="form-control" id="select2" formControlName="to" name="to">
+                      <option value="">Select City</option>
+                      <option *ngFor="let city of citiesTo" [value]="city">{{city | titlecase}}</option>
+                    </select>
+                    <div class="text-danger" *ngIf="submitted && f.to.errors  && f.to.errors.required">*field is required</div>
+                </div>
+                <!-- <div class="row">
+                    <div class="col-6 ">
+                        <input class="form-check-input" type="radio" name="trip" id="straight" value="straight" checked>
+                        <label class="form-check-label" for="straight">One Way</label>
+                    </div>
+                    <div class="col-6">
+                        <input class="form-check-input" type="radio" name="trip" id="round" value="round">
+                        <label class="form-check-label" for="round">Round Trip</label>
+                    </div>
+                </div> -->
+                <div class="form-group row my-4">
+                    <label for="date">Date</label>
+                    <input type="date" name="date" id="date" class="form-control" formControlName="date" min="2021-04-21"  >
+                    <div class="text-danger" *ngIf="submitted && f.date.errors  && f.date.errors.required">*date is required</div>
+                </div>
+                <div class="form-group row ">
+                    <button type="submit" class="btn btn-primary my-3 mx-auto" >Search Buses</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+/* .container-fluid{
+    background-color: rgb(255, 255, 255);
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+} */
+.shadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    border: none;
+}
+thead{
+    background-color: #007bff;
+    color: rgb(255, 255, 255);
+    border: none;
+}
+/* tr:hover{
+    color: #007bff;
+    font-weight: bold;
+} */
+table{
+    border-bottom: 2px solid #007bff;
+}
+.bus-icon{
+    text-align: center;
+    margin: 20px;
+    padding-left: 20px;
+    padding-top: 60px;
+    padding-left: 20px;
+    padding-bottom: 150px;
+    background-color: rgba(255, 255, 255, 0.781);
+    /* border: 1px solid rgb(243, 243, 243); */
+    border-radius: 20px;
+}
+.bus-icon img{
+    width: 400px;
+    height: 250px;
+    opacity: 0.2;    
+}

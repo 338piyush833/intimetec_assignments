@@ -1,0 +1,66 @@
+<div class="container-fluid p-1 container-css" >
+    <div class="ticket-icon" *ngIf="!count">
+        <img src="../../../assets/ticket1.png" >
+        <h4 class="text-center my-4">No ticket is booked yet </h4>
+    </div>
+    <div class="card shadow mx-2 my-5 p-4 min-height" *ngFor="let ticket of tickets" >
+        <div style="overflow-x:auto;">
+            <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <th>{{ticket.search.from | titlecase}} to {{ticket.search.to | titlecase}}</th>
+                        <th>{{ticket.search.date | date}}</th>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <th>Passenger Detail</th>
+                            <th>Ticket Id</th>
+                            <th>Seat No.</th>
+                            <th>Total Fare</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>{{ticket.passenger.name | titlecase}}</b></td>
+                                <td rowspan="3">{{ticket.id}}</td>
+                                <td rowspan="3"><span *ngFor="let seat of ticket.seats">{{seat.key}} | </span></td>
+                                <td rowspan="3">{{ticket.bus.fare*ticket.seats.length | currency:'INR'}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ticket.passenger.phone}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ticket.passenger.email}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <th>Bus Name</th>
+                            <th>Reporting Time</th>
+                            <th>Departure Time</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ticket.bus.name | titlecase}}</td>
+                                <td rowspan="2">30 minute before departure</td>
+                                <td rowspan="2">{{ticket.bus.time}}</td>
+                            </tr>
+                            <tr>
+                                <td><small>Coach Type: {{ticket.bus.coach}}</small></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <p class="text-danger text-center">**Please bring this copy to ticket counter**</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="card shadow">
+    <div class="card-header p-4"><b>Review Ticket</b></div>
+    <div class="card-body p-4">
+        <h5 class="text-warning">{{ticket.search.from | titlecase}} To {{ticket.search.to | titlecase}}</h5>
+        <span>Date & Time : {{ticket.search.date | date}}:{{ticket.bus.time }}</span><br>
+        <span>{{ticket.bus.name}}</span><br>
+        <span>Coach Type: {{ticket.bus.coach }}</span><br>
+        <span>Seats No: <span *ngFor="let seat of ticket.seats" class="text-warning">{{seat.key}} | </span></span><br>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="bus-icon" *ngIf="!count">
+        <img src="../../../assets/bus-icon.jpg" >
+        <h4 class="text-center my-4">Buses not available for this route</h4>
+    </div>
+    <div class="card mx-auto shadow my-4 p-3" style="overflow-x:auto;" *ngIf="count">
+        <table class="table">
+            <thead>
+                <th>Bus Name</th>
+                <th>Dept. Time</th>
+                <th>Coach Type</th>
+                <th>Seat Available</th>
+                <th>Fare</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bus of buses">
+                    <td>{{bus.name}}</td>
+                    <td>{{bus.time}}</td>
+                    <td>{{bus.coach}}</td>
+                    <td>{{bus.seat}}</td>
+                    <td>{{bus.fare | currency:'INR'}}</td>
+                    <td><button type="button" class="btn btn-primary" (click)="goToSeat(bus.id)">View Detail</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
