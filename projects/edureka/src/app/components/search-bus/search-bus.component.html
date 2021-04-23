@@ -7,15 +7,15 @@
             <form class="form mx-4 my-5" [formGroup]="searchForm" (ngSubmit)="searchBus()">
                 <div class="form-group row">
                     <label for="select1">From</label>
-                    <select class="form-control" id="select1" formControlName="from" name="from" (change)="changeTo($event)">
+                    <select class="form-control" id="select1" formControlName="from" name="from" (change)="changeFrom($event)">
                         <option value="" >Select City</option>
-                        <option *ngFor="let city of citiesFrom" [ngValue]="city">{{city | titlecase}}</option>
+                        <option *ngFor="let city of citiesFrom" [value]="city">{{city | titlecase}}</option>
                     </select>
                     <div class="text-danger" *ngIf="submitted && f.from.errors  && f.from.errors.required">*field is required</div>
                 </div>
                 <div class="form-group row">
                     <label for="select2">To</label>
-                    <select class="form-control" id="select2" formControlName="to" name="to">
+                    <select class="form-control" id="select2" formControlName="to" name="to" (change)="changeTo($event)">
                       <option value="">Select City</option>
                       <option *ngFor="let city of citiesTo" [value]="city">{{city | titlecase}}</option>
                     </select>
@@ -33,7 +33,7 @@
                 </div> -->
                 <div class="form-group row my-4">
                     <label for="date">Date</label>
-                    <input type="date" name="date" id="date" class="form-control" formControlName="date" min="2021-04-21"  >
+                    <input type="date" name="date" id="date" class="form-control" formControlName="date" [min]="minDate | date:'yyyy-MM-dd'"  >
                     <div class="text-danger" *ngIf="submitted && f.date.errors  && f.date.errors.required">*date is required</div>
                 </div>
                 <div class="form-group row ">
