@@ -12,14 +12,14 @@ export class SelectSeatComponent implements OnInit {
   bus:any;
   seats:any[];
   price:number;
-  selectedSeat: any[];
+  selectedSeats: any[];
   total:number;
   error:string;
 
   constructor(private booking:BookingService, private router:Router) {
     this.seats = [];
     this.price = 0;
-    this.selectedSeat = [];
+    this.selectedSeats = [];
     this.total = 0;
     this.error = "";
     
@@ -27,37 +27,46 @@ export class SelectSeatComponent implements OnInit {
 
   ngOnInit(): void {    
     this.bus = this.booking.ticketObj.bus;
+    createSeats();
+  }
+  
+  createSeats(){
     var countSeats = this.bus.seat;
-    // console.log(this.bus);
-    var y = 'A'.charCodeAt(0);
+    var character = 'A'.charCodeAt(0);
     this.price = this.bus.fare;
     for (let i=0;i<countSeats/4;i++){
-      var ary = [];
-      
-      var x=String.fromCharCode(y+i);
-      for(let j=1;j<=4;j++){
-        var keyVal = String(x+j);
-        var obj = {};
-        Object.assign(obj, { key: keyVal,value:false });
-        ary.push(obj);
+      var seatColumn = [];
+      var seatCharacter = String.fromCharCode(character+i);
+      for(let seat_number=1;seat_number<=4;seat_number++){
+        var seatCode = seatCharacter+seat_number;
+        var seatObject = {};
+        Object.assign(seatObject, { seatCode: seatCode,isSelected:false });
+        seatColumn.push(seatObject);
       }
-      this.seats.push(ary);
+      this.seats.push(seatColumn);
     }
   }
 
   checkboxchange(event:any,seat:any){
-
-    if(!seat.value){
-      this.selectedSeat.push(seat);
+    if(!seat.isSelected){
+      selectSeat(seat);
+    }else{
+      deselectSeat(seat);
+    }
+    seat.isSelected = !seat.isSelected;
+  }
+  
+  selectSeat(seat){
+      this.selectedSeats.push(seat);
       this.total = this.total+this.price
       this.error = "";
-    }else{
-      var s = this.selectedSeat.filter((element)=>element.key!=seat.key);
-      this.total = this.total-this.price
-      this.selectedSeat = [...s];
-    }
-    seat.value = !seat.value;
   }
+  deselectSeat(seat){
+      var newSelectedSeats = this.selectedSeat.filter((element)=>element.seatCode!=seat.seatCode);
+      this.total = this.total-this.price
+      this.selectedSeats = [...newSelectedSeats];
+  }
+  
 
   goToUser(){
     if(this.selectedSeat.length==0){
